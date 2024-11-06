@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.lista {
+    list-style: none;
+    padding: 0;
+}
+
+.partida {
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.partida:last-child {
+    border-bottom: none;
+}
+
+.time {
+    font-weight: bold;
+    min-width: 200px;
+}
+
+.data {
+    color: #777;
+}
+
+.partida a {
+    display: flex;
+    text-decoration: none;
+    justify-content: space-between;
+    color: inherit;
+    width: 100%;
+    padding: 15px;
+}

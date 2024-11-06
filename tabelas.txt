@@ -1,0 +1,71 @@
+CREATE TABLE Time (
+	id VARCHAR PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,
+	escudo VARCHAR(200)
+);
+
+CREATE TABLE Estadio (
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(200) NOT NULL,
+	cidade VARCHAR(100)
+);
+
+CREATE TABLE Jogador (
+	id VARCHAR PRIMARY KEY,
+	foto VARCHAR(200),
+	time_id VARCHAR REFERENCES Time(id),
+	nome VARCHAR(150) NOT NULL,
+	posicao VARCHAR(50),
+	idade VARCHAR(5),
+	gols VARCHAR(5),
+	partidas_jogadas VARCHAR(5),
+	cartoes_amarelos VARCHAR(5),
+	cartoes_vermelhos VARCHAR(5),
+	chutes VARCHAR(5),
+	faltas VARCHAR(5),
+	passes VARCHAR(5)
+);
+
+CREATE TABLE Partida (
+	id VARCHAR PRIMARY KEY,
+	data DATE NOT NULL,
+	estadio VARCHAR(150),
+	time_casa_id VARCHAR REFERENCES Time(id),
+	time_visitante_id VARCHAR REFERENCES Time(id),
+	gols_casa INTEGER,
+	gols_visitante INTEGER,
+	arbitro VARCHAR(100)
+);
+
+CREATE TABLE Gol (
+	id SERIAL PRIMARY KEY,
+	tempo VARCHAR(5),
+	gol_casa VARCHAR REFERENCES Jogador(id),
+	gol_visitante VARCHAR REFERENCES Jogador(id),
+	partida_id VARCHAR REFERENCES Partida(id)
+);
+
+CREATE TABLE Cartao (
+    id SERIAL PRIMARY KEY,
+    partida_id VARCHAR REFERENCES Partida(id),
+    jogador_id VARCHAR REFERENCES Jogador(id),
+    tipo VARCHAR(20) CHECK (tipo IN ('Amarelo', 'Vermelho')),
+    minuto VARCHAR(5)
+);
+
+CREATE TABLE Substituicao (
+	id SERIAL PRIMARY KEY,
+	partida_id VARCHAR REFERENCES Partida(id),
+	time_id VARCHAR REFERENCES Time(id),
+	minuto VARCHAR(5),
+	substituicao VARCHAR(100)
+);
+
+CREATE TABLE Estatistica (
+	id SERIAL PRIMARY KEY,
+	partida_id VARCHAR REFERENCES Partida(id),
+	tipo VARCHAR(50),
+	casa VARCHAR(5),
+	visitante VARCHAR(5)
+);
+select * from Jogador
